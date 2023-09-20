@@ -15,7 +15,7 @@ app.use(cors({
 
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb+srv://root:root@cluster0.cb98oei.mongodb.net/?retryWrites=true&w=majority', {
+  .connect(process.env.MONGODB_URI || 'mongodb+srv://root:root@cluster0.cb98oei.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -67,36 +67,6 @@ app.post("/api/addNew", async (req, res) => {
 });
 
 // ...
-
-/*
-app.post("/api/addNew", async (req, res) => {
-  const { title, description } = req.body;
-
-  // Add validation here to check if title and description are valid.
-
-  try {
-    const keeperObj = new Keeper({
-      title: title,
-      description: description,
-    });
-    await keeperObj.save();
-    //res.status(201).json({ message: "Keeper added successfully" });
-
-    // Fetch the updated list of keepers and send it in the response
-    Keeper.find({}, (err, keeperList) => {
-      if (err) {
-        console.log(err);
-      } else {
-        // Send the updated keeper list in the response
-        res.status(200).send(keeperList);
-      }
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to add keeper" });
-  }
-});
-*/
 
 app.post("/api/delete", async (req, res) => {
   const { id } = req.body;
